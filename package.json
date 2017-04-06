@@ -12,6 +12,7 @@
     "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
   },
   "dependencies": {
+    "mongoose": "^4.9.3",
     "uuid": "^3.0.1"
   }
 }

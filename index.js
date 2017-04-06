@@ -42,6 +42,9 @@ rl.on('line', (line) => {
     case 'destroy':
       todos.destroy(words[1])
       break
+    case 'destroyAll':
+      todos.destroyAll()
+      break
     case 'quit':
       rl.close()
       return
