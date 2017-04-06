@@ -63,8 +63,6 @@ function show (id) {
 
 function update (id, params) {
   // find the TODO with this id and update it's params. console log the result.
-  var newParams = params
-
   if (!params.name) {
     console.log('Please enter a name')
     return
@@ -75,28 +73,56 @@ function update (id, params) {
     return
   }
 
-  if (!params.description) {
-    newParams.description = ''
-  }
-
-  Todo.update({'_id': id}, newParams, function (err, data) {
+  mongoose.connect(dbURI)
+  Todo.findById(id, function (err, data) {
     if (err) console.log('No document with that id exists')
-    console.log('Document successfully updated')
+    var newParams = params
+    var changesMade = false
+    if (!params.description) {
+      newParams.description = ''
+    }
+    if (params.name === data.name) {
+      delete newParams.name
+      changesMade = true
+    }
+    if (params.description === data.description) {
+      delete newParams.description
+      changesMade = true
+    }
+    if (params.completed === data.completed) {
+      delete newParams.completed
+      changesMade = true
+    }
+
+    if (changesMade) {
+      console.log('No changes were made')
+      mongoose.disconnect()
+      return
+    }
+    Todo.update({'_id': id}, newParams, function (err, data) {
+      if (err) console.log('There was a problem updating the document')
+      console.log('Document successfully updated')
+      mongoose.disconnect()
+    })
   })
 }
 
 function destroy (id) {
   // find the TODO with this id and destroy it. console log success/failure.
+  mongoose.connect(dbURI)
   Todo.deleteOne({'_id': id}, function (err, data) {
     if (err) console.log('There was a problem destroying the selected document')
     console.log('Document with id ' + id + ' successfully destroyed')
+    mongoose.disconnect()
   })
 }
 
 function destroyAll () {
+  mongoose.connect(dbURI)
   Todo.remove({}, function (err, data) {
     if (err) console.log('There was a problem destroying all documents')
     console.log('All documents successfully destroyed')
+    mongoose.disconnect()
   })
 }
 
