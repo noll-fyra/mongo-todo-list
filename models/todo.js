@@ -2,7 +2,11 @@
 const mongoose = require('mongoose')
 
 const todoSchema = mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    minLength: [5, '5 characters minimum for the name'],
+    require: true
+  },
   description: String,
   completed: Boolean
 })

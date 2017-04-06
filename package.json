@@ -1,18 +1,18 @@
 {
-  "name": "mongo-todo-list",
-  "version": "1.0.0",
-  "description": "Mongo/Mongoose Todo List",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "test": "node test/todo_tests.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
-  },
-  "dependencies": {
-    "mongoose": "^4.9.3",
-    "uuid": "^3.0.1"
-  }
+    "name": "mongo-todo-list",
+    "version": "1.0.0",
+    "description": "Mongo/Mongoose Todo List",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "node test/todo_tests.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/wdi-sg/tdd-todo-list.git"
+    },
+    "dependencies": {
+        "mongoose": "^4.9.3",
+        "uuid": "^3.0.1"
+    }
 }
